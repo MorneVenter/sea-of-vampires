@@ -18,8 +18,8 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PrettyNumbers="*res://Assets/Scripts/Utilities/PrettyNumbers.gd"
 Events="*res://Assets/Scripts/Managers/Events.gd"
+Angle="*res://Assets/Scripts/Utilities/Angle.gd"
 
 [display]
 

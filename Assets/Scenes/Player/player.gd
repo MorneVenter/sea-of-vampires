@@ -5,10 +5,13 @@ onready var _boat_mesh: Spatial = $BoatMesh
 func _physics_process(delta: float) -> void:
 	_move(delta)
 
+
 func _move(delta) -> void:
 	var position_of_mouse: Vector3 = _get_mouse_position()
 	transform.origin = lerp(transform.origin, position_of_mouse, 0.01)
-	look_at(position_of_mouse, Vector3.UP)
+	var target_vector: Vector3 = (transform.origin - position_of_mouse)
+	var target_rotation: float = atan2(target_vector.x, target_vector.z)
+	rotation.y = Angle.lerp_degrees(rotation.y, target_rotation, 0.03)
 
 
 func _get_mouse_position() -> Vector3:
