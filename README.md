@@ -1,4 +1,4 @@
-# [Project Template]
+# Sea of Vampires
 
 ## Software Kit
 

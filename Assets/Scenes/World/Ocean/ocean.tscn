@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://ExternalAssets/Shaders/Spatial/water.gdshader" type="Shader" id=1]
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 1 )
+shader_param/WATER_COL = Color( 0.345098, 0.027451, 0.0784314, 1 )
+shader_param/WATER2_COL = Color( 0.270588, 0.00392157, 0.0941176, 1 )
+shader_param/FOAM_COL = Color( 0.901961, 0.0823529, 0.2, 1 )
+shader_param/distortion_speed = 2.0
+shader_param/tile = Vector2( 240, 240 )
+shader_param/height = 2.0
+shader_param/wave_size = Vector2( 1, 2 )
+shader_param/wave_speed = 1.2
+shader_param/uv_offset = Vector2( 0, 0 )
+
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 200, 200 )
+
+[sub_resource type="BoxShape" id=8]
+extents = Vector3( 200, 0.085, 200 )
+
+[sub_resource type="PlaneMesh" id=6]
+size = Vector2( 200, 200 )
+
+[sub_resource type="SpatialMaterial" id=7]
+albedo_color = Color( 0, 0, 0, 1 )
+
+[node name="Ocean" type="Spatial"]
+
+[node name="WaterPlane" type="MeshInstance" parent="."]
+material_override = SubResource( 5 )
+mesh = SubResource( 3 )
+
+[node name="WaterCollider" type="StaticBody" parent="WaterPlane" groups=["Sea"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Collider" type="CollisionShape" parent="WaterPlane/WaterCollider"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00270033, 0 )
+shape = SubResource( 8 )
+
+[node name="Underwater" type="MeshInstance" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.5823, 0 )
+mesh = SubResource( 6 )
+skeleton = NodePath("../WaterPlane")
+material/0 = SubResource( 7 )

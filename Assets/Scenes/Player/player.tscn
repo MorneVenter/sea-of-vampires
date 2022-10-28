@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ExternalAssets/Models/Boat/boat.glb" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Scenes/Player/player.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.766148
+height = 3.12497
+
+[node name="Player" type="KinematicBody"]
+script = ExtResource( 2 )
+
+[node name="BoatMesh" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, 0, 0, 0 )
+
+[node name="BoatLight" type="OmniLight" parent="BoatMesh"]
+transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.26321, 2.06702 )
+light_color = Color( 0.65098, 0.713726, 1, 1 )
+shadow_enabled = true
+omni_range = 6.0
+omni_attenuation = 0.287175
+
+[node name="Collider" type="CollisionShape" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.614735, 0 )
+shape = SubResource( 1 )
