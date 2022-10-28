@@ -11,6 +11,7 @@
 
 [node name="FollowCamera" parent="." instance=ExtResource( 3 )]
 target_node = NodePath("../Player")
+follow_speed = 2.0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 script = ExtResource( 4 )
