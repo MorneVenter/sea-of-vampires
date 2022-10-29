@@ -7,5 +7,5 @@
 transform = Transform( 1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 6, 8 )
 environment = ExtResource( 1 )
 current = true
-fov = 50.0
+fov = 80.0
 script = ExtResource( 2 )

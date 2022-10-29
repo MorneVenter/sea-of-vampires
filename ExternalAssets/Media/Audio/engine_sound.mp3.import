@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/engine_sound.mp3-2a7fd70581421def2a77240e26099f59.mp3str"
+
+[deps]
+
+source_file="res://ExternalAssets/Media/Audio/engine_sound.mp3"
+dest_files=[ "res://.import/engine_sound.mp3-2a7fd70581421def2a77240e26099f59.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

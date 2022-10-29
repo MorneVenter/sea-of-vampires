@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.14902, 0.054902, 0.0117647, 1 )
+distance_fade_mode = 1
+distance_fade_min_distance = 0.0
+distance_fade_max_distance = 8.0
+
+[sub_resource type="CubeMesh" id=3]
+size = Vector3( 2, 50, 200 )
+
+[sub_resource type="ConvexPolygonShape" id=4]
+points = PoolVector3Array( 1.22196, 25.2173, 100.444, -1.44418, -25.4444, -100.444, 1.22222, -25.4444, -100.444, -1.44444, 25.2222, -100.444, -1.44418, -25.4444, 100.444, -1.44444, 25.2222, 100.444, 1.22222, -25.4444, 100.444, 1.22196, 25.2173, -100.444 )
+
+[node name="Bound" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -100.462, 15.0007, 0 )
+material_override = SubResource( 5 )
+mesh = SubResource( 3 )
+
+[node name="StaticBody" type="StaticBody" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="StaticBody"]
+shape = SubResource( 4 )

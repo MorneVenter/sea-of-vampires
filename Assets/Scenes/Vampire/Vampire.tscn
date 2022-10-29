@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="SpatialMaterial" id=2]
+flags_unshaded = true
+albedo_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="SphereMesh" id=1]
+
+[node name="Vampire" type="MeshInstance"]
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.25, -5.454 )
+material_override = SubResource( 2 )
+cast_shadow = 0
+mesh = SubResource( 1 )

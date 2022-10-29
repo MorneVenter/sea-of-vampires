@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://ExternalAssets/Shaders/Spatial/water.gdshader" type="Shader" id=1]
+[ext_resource path="res://ExternalAssets/Media/Audio/462594__eelke__rough-inconsistent-waves.wav" type="AudioStream" id=2]
 
 [sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 1 )
@@ -45,3 +46,8 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6.5823, 0 )
 mesh = SubResource( 6 )
 skeleton = NodePath("../WaterPlane")
 material/0 = SubResource( 7 )
+
+[node name="WaveSounds" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -3.0
+autoplay = true

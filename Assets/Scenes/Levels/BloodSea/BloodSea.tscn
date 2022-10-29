@@ -1,17 +1,162 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Scenes/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Scenes/World/Ocean/Ocean.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Assets/Scenes/Camera/FollowCamera.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/Scenes/Player/Player.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Scenes/Rocks/RockLarge.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Scenes/Rocks/RockMeduim.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Assets/Scenes/Rocks/Bound.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Scenes/Vampire/Vampire.tscn" type="PackedScene" id=8]
 
 [node name="World" type="Spatial"]
 
 [node name="Ocean" parent="." instance=ExtResource( 2 )]
 
+[node name="Bounds" type="Spatial" parent="."]
+
+[node name="Bound" parent="Bounds" instance=ExtResource( 7 )]
+
+[node name="Bound4" parent="Bounds" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 91.9585, 15.0007, 0 )
+
+[node name="Bound2" parent="Bounds" instance=ExtResource( 7 )]
+transform = Transform( 0.673761, 0, -0.738949, 0, 1, 0, 0.738949, 0, 0.673761, -68.4061, 15.0007, -71.5532 )
+
+[node name="Bound6" parent="Bounds" instance=ExtResource( 7 )]
+transform = Transform( 0.418438, 0, -0.908245, 0, 1, 0, 0.908245, 0, 0.418438, 109.863, 15.0007, 29.4081 )
+
+[node name="Bound7" parent="Bounds" instance=ExtResource( 7 )]
+transform = Transform( -0.612397, 0, -0.790551, 0, 1, 0, 0.790551, 0, -0.612397, -117.108, 15.0007, -6.31395 )
+
+[node name="Bound3" parent="Bounds" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 12.9832, 15.0007, -89.5865 )
+
+[node name="Bound5" parent="Bounds" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.87143, 15.0007, 99.1822 )
+
 [node name="FollowCamera" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, -83.009, 6, 86.7846 )
 target_node = NodePath("../Player")
 follow_speed = 2.0
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+transform = Transform( -0.605794, 0, -0.795621, 0, 1, 0, 0.795621, 0, -0.605794, -82.9157, 0, 78.7846 )
 script = ExtResource( 4 )
+rotation_speed = 0.04
+
+[node name="Rocks" type="Spatial" parent="."]
+
+[node name="RockLarge" parent="Rocks" instance=ExtResource( 5 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 10.844, 0, -9.47586 )
+
+[node name="RockMeduim" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16.6988 )
+
+[node name="RockMeduim2" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -66.9852, 0, 77.6171 )
+
+[node name="RockMeduim3" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.183574, 0, -0.983006, 0, 1, 0, 0.983006, 0, -0.183574, -69.0986, -1.13308, 74.9739 )
+
+[node name="RockMeduim4" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.5082, 0, -0.861239, 0, 1, 0, 0.861239, 0, -0.5082, -89.349, -1.145, 74.974 )
+
+[node name="RockMeduim5" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.5082, 0, -0.861239, 0, 1, 0, 0.861239, 0, -0.5082, -88.113, -1.133, 86.154 )
+
+[node name="RockMeduim6" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.926666, 0, 0.375885, 0, 1, 0, -0.375885, 0, -0.926666, -63.811, -1.13308, 86.1537 )
+
+[node name="RockMeduim17" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.52461, 0, 0.851343, 0, 1, 0, -0.851343, 0, -0.52461, -53.5957, -1.13308, 55.6439 )
+
+[node name="RockMeduim18" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.703494, 0, 0.710701, 0, 1, 0, -0.710701, 0, 0.703494, -44.0094, -1.13308, 53.4671 )
+
+[node name="RockMeduim19" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.0542532, 0, 0.998527, 0, 1, 0, -0.998527, 0, -0.0542532, -39.1617, -1.13308, 84.0317 )
+
+[node name="RockMeduim20" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.460556, 0, 0.887631, 0, 1, 0, -0.887631, 0, 0.460556, -46.5017, -1.13308, 84.0317 )
+
+[node name="RockMeduim21" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.911834, 0, 0.41056, 0, 1, 0, -0.41056, 0, -0.911834, -46.5017, -1.13308, 74.6529 )
+
+[node name="RockMeduim22" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.911834, 0, 0.41056, 0, 1, 0, -0.41056, 0, -0.911834, -30.5673, -1.13308, 76.2765 )
+
+[node name="RockMeduim27" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.812786, 0, 0.582563, 0, 1, 0, -0.582563, 0, 0.812786, -28.3612, -1.13308, 73.3079 )
+
+[node name="RockMeduim30" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.812786, 0, 0.582563, 0, 1, 0, -0.582563, 0, 0.812786, -17.211, 0.616607, 96.2008 )
+
+[node name="RockMeduim31" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.828422, 0, 0.560104, 0, 1, 0, -0.560104, 0, -0.828422, -12.6501, 0.856824, 95.9535 )
+
+[node name="RockMeduim32" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.591732, 0, 0.806135, 0, 1, 0, -0.806135, 0, -0.591732, -17.9785, 0.769636, 93.1693 )
+
+[node name="RockMeduim28" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.812786, 0, 0.582563, 0, 1, 0, -0.582563, 0, 0.812786, -31.7256, -1.13308, 64.0932 )
+
+[node name="RockMeduim29" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.226838, 0, 0.973933, 0, 1, 0, -0.973933, 0, -0.226838, -29.4012, -1.13308, 66.1705 )
+
+[node name="RockMeduim23" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.911834, 0, 0.41056, 0, 1, 0, -0.41056, 0, -0.911834, -34.8766, -1.13308, 65.4857 )
+
+[node name="RockMeduim26" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -1.74237, 0.0276286, -1.03946, 0.0786237, 2.02604, -0.0779388, 1.03685, -0.107204, -1.74084, -37.5488, -1.25533, 55.9003 )
+
+[node name="RockMeduim33" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.026652, -0.0790234, -2.02735, 0.0786237, 2.02604, -0.0779388, 2.02736, -0.0775335, 0.0296744, -33.9581, 0.0316448, 60.8339 )
+
+[node name="RockMeduim34" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.026652, -0.0790234, -2.02735, 0.0786237, 2.02604, -0.0779388, 2.02736, -0.0775335, 0.0296744, -30.4382, 0.0316448, 80.7414 )
+
+[node name="RockMeduim35" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 1.98507, -0.0610403, 0.415757, 0.0786237, 2.02604, -0.0779388, -0.412794, 0.0923593, 1.98448, -30.4382, 0.0316448, 86.619 )
+
+[node name="RockMeduim36" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -1.59849, 0.109922, 1.24493, 0.0786237, 2.02604, -0.0779388, -1.2473, -0.0131605, -1.60037, -33.3521, 0.0316448, 92.301 )
+
+[node name="RockMeduim37" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -1.94377, 0.0975072, 0.573872, 0.0786237, 2.02604, -0.0779388, -0.576762, -0.052426, -1.94466, -33.3521, 0.405567, 96.441 )
+
+[node name="RockMeduim38" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 1.68408, -0.0218229, 1.13159, 0.0786237, 2.02604, -0.0779388, -1.12906, 0.108535, 1.68242, -26.7132, 1.10234, 95.673 )
+
+[node name="RockMeduim7" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.926666, 0, 0.375885, 0, 1, 0, -0.375885, 0, -0.926666, -63.811, -0.665034, 61.6203 )
+
+[node name="RockMeduim8" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.963134, 0, -0.269021, 0, 1, 0, 0.269021, 0, -0.963134, -83.3746, -0.665034, 47.986 )
+
+[node name="RockMeduim14" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.704709, 0, 0.709497, 0, 1, 0, -0.709497, 0, -0.704709, -83.3746, -0.665034, 27.3769 )
+
+[node name="RockMeduim15" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.999957, 0, -0.0092501, 0, 1, 0, 0.0092501, 0, -0.999957, -89.9751, -0.665034, 37.699 )
+
+[node name="RockMeduim16" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.997799, 0, -0.0663088, 0, 1, 0, 0.0663088, 0, 0.997799, -83.0235, -0.665034, 37.699 )
+
+[node name="RockMeduim9" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.963134, 0, -0.269021, 0, 1, 0, 0.269021, 0, -0.963134, -98.8659, -0.665034, 60.9471 )
+
+[node name="RockMeduim10" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.963134, 0, -0.269021, 0, 1, 0, 0.269021, 0, -0.963134, -98.8659, -0.665034, 84.6772 )
+
+[node name="RockMeduim11" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.731746, 0, -0.681577, 0, 1, 0, 0.681577, 0, 0.731746, -98.8659, -0.665034, 90.5395 )
+
+[node name="RockMeduim12" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( -0.985461, 0, -0.1699, 0, 1, 0, 0.1699, 0, -0.985461, -99.2839, -0.665034, 95.248 )
+
+[node name="RockMeduim13" parent="Rocks" instance=ExtResource( 6 )]
+transform = Transform( 0.701108, 0, -0.713055, 0, 1, 0, 0.713055, 0, 0.701108, -99.2839, -0.665034, 73.6906 )
+
+[node name="Vampire" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, -77.2528, 0.25, 64.572 )

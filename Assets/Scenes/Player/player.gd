@@ -1,14 +1,21 @@
 extends KinematicBody
 
-onready var _boat_mesh: Spatial = $BoatMesh
+onready var _boat_light: OmniLight = $BoatMesh/BoatLight
+onready var _engine_sound: AudioStreamPlayer3D = $EngineSound
 
-export var max_speed: float = 3.0
+export var max_speed: float = 2.6
 export var momentum: float = 0.03
-export var rotation_speed: float = 0.04
+export var rotation_speed: float = 0.005
+export var turn_speed: float = 0.02
 
 var speed: float = 0.0
 var move_direction: Vector3 = Vector3.ZERO
 var dead_zone: float = 2.0
+var light_energy: float = 1.0
+
+func _ready() -> void:
+	_boat_light.light_energy = 0.0
+	_engine_sound.unit_db = -80.0
 
 func _physics_process(_delta: float) -> void:
 	_handle_movement()
@@ -23,7 +30,11 @@ func _handle_movement() -> void:
 			_move(position_of_mouse)
 	else:
 		_reduce_speed()
-	var _velocity := move_and_slide(move_direction * speed)
+	var _velocity := move_and_slide(move_direction.normalized() * speed)
+	var _speed_factor: float = speed / max_speed
+	_boat_light.light_energy = _speed_factor * light_energy
+	_engine_sound.unit_db = (_speed_factor * 40.0 - 40.0) if _speed_factor > 0.0 else -80.0
+	transform.origin.y = lerp(transform.origin.y, 0.0, 0.6)
 
 func _reduce_speed() -> void:
 	speed = clamp(speed - momentum, 0, max_speed)
@@ -35,7 +46,8 @@ func _move(position_of_mouse: Vector3) -> void:
 	var target_vector: Vector3 = (transform.origin - position_of_mouse)
 	var target_rotation: float = atan2(target_vector.x, target_vector.z)
 	rotation.y = Angle.lerp_degrees(rotation.y, target_rotation, rotation_speed)
-	move_direction = Vector3(-target_vector.x, 0, -target_vector.z).normalized()
+	var new_direction := Vector3(-target_vector.x, 0, -target_vector.z).normalized()
+	move_direction = lerp(move_direction, new_direction, turn_speed)
 
 func _get_mouse_position() -> Vector3:
 	var space_state = get_world().direct_space_state
