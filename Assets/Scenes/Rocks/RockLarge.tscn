@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://ExternalAssets/Models/Rocks/NatureGrads_004.material" type="Material" id=1]
+
+[sub_resource type="SpatialMaterial" id=3]
+albedo_color = Color( 0.345098, 0.2, 0.137255, 1 )
 
 [sub_resource type="ArrayMesh" id=1]
 resource_name = "rock_large_Cube001"
@@ -27,6 +30,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.369921, 0 )
 
 [node name="Stones_Monolith_Variant_5" type="MeshInstance" parent="rock_large"]
 transform = Transform( -0.00957245, 0.00899182, 0.000673137, -0.00017437, 0.000620408, -0.0205717, -0.00605699, -0.0142285, -0.000471601, 0, 0.377347, 0 )
+material_override = SubResource( 3 )
 mesh = SubResource( 1 )
 
 [node name="StaticBody" type="StaticBody" parent="rock_large/Stones_Monolith_Variant_5"]

@@ -197,5 +197,4 @@ void fragment()
 	
     // ALBEDO = vec3(water(uv * tile, vec3(0,1,0), TIME * distortion_speed));
 	ALBEDO = vec3(water( ( uv + uv_offset ) * tile, vec3(0,1,0), TIME * distortion_speed));
-	//ALPHA = 0.7;
 }

@@ -1,13 +1,62 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
-[sub_resource type="SpatialMaterial" id=2]
-flags_unshaded = true
-albedo_color = Color( 0, 0, 0, 1 )
+[ext_resource path="res://Assets/Scenes/Vampire/Vampire.gd" type="Script" id=1]
+
+[sub_resource type="Shader" id=2]
+code = "//Made by Kmitt91//
+
+shader_type spatial;
+
+render_mode diffuse_toon, cull_disabled;
+
+uniform sampler2D wing_tex : hint_white;
+uniform sampler2D mask_tex : hint_white;
+uniform sampler2D pattern_tex : hint_white;
+uniform sampler2D gradient_tex : hint_black_albedo;
+
+uniform float displ_strengh = 0.3;
+uniform float wave_frequency = 2.0;
+uniform float speed = 0.2;
+uniform float emission_strengh = 0.0;
+
+
+void vertex() {
+	VERTEX.y += displ_strengh * UV.x * sin(VERTEX.x * wave_frequency + TIME * 4.0*speed);
+}
+
+
+void fragment() {
+	
+	vec2 uv_movement = UV;
+	uv_movement -= speed * (TIME * vec2(1.0, 0.0));
+	
+	vec4 wing = texture(wing_tex, uv_movement);
+	vec4 mask = texture(mask_tex, UV);
+	vec4 pattern = texture(pattern_tex, uv_movement * vec2(2.0, 1.0));
+	vec3 gradient = texture(gradient_tex, UV).rgb;
+	
+	vec3 emission = emission_strengh * gradient;
+	
+	vec3 alter_mask = mask.rgb * pattern.rgb;
+	
+	
+	ALBEDO = wing.rgb * gradient.rgb * alter_mask.rgb;
+	ALPHA = 0.43;
+	EMISSION = emission * pattern.rgb * alter_mask.rgb;
+}"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+shader_param/displ_strengh = 0.67
+shader_param/wave_frequency = 8.0
+shader_param/speed = 0.34
+shader_param/emission_strengh = 0.0
 
 [sub_resource type="SphereMesh" id=1]
 
 [node name="Vampire" type="MeshInstance"]
-transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.25, -5.454 )
-material_override = SubResource( 2 )
+transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.25, 0 )
+material_override = SubResource( 3 )
 cast_shadow = 0
 mesh = SubResource( 1 )
+script = ExtResource( 1 )
