@@ -73,6 +73,10 @@ func kill() -> void:
 	is_dead = true
 	_boat_anim.current_animation = "die"
 
+func finish() -> void:
+	is_dead = true
+	_boat_anim.current_animation = "finish"
+
 func add_pursuer(vampire: Spatial) -> void:
 	var index := pursuers.find(vampire)
 	if index == -1:
@@ -86,7 +90,7 @@ func remove_pursuer(vampire: Spatial) -> void:
 		_stop_persue()
 
 func _play_persue() -> void:
-	if _persue_sound_anim.current_animation != "play":
+	if $PersueSound.volume_db <= 30:
 		_persue_sound_anim.current_animation = "play"
 
 func _stop_persue() -> void:
@@ -97,3 +101,6 @@ func _fade_out() -> void:
 
 func _reload() -> void:
 	Events.emit_signal("reload")
+
+func _show_end_scene() -> void:
+	Events.emit_signal("end")
