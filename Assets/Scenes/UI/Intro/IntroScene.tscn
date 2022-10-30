@@ -59,12 +59,12 @@ custom_fonts/normal_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[center]You have been contracted to transport medical supplies from Outpost Gamma to Outpost Omega across the [color=red]Sea of Blood[/color].
 
-The [color=red]Sea of Blood[/color] is invested with [color=red]Vampires[/color]. They are attracted to [color=red]light and sound[/color]. Cut your engines if you are spotted. Otherwise they will [color=red]kill[/color] you.
+The [color=red]Sea of Blood[/color] is infested with [color=red]Vampires[/color]. They are attracted to [color=red]light and sound[/color]. Cut your engines if you are spotted. Otherwise they will [color=red]kill[/color] you.
 
 The coordinates of your objective will be displayed on your compass. [color=red]Good luck[/color]."
 text = "You have been contracted to transport medical supplies from Outpost Gamma to Outpost Omega across the Sea of Blood.
 
-The Sea of Blood is invested with Vampires. They are attracted to light and sound. Cut your engines if you are spotted. Otherwise they will kill you.
+The Sea of Blood is infested with Vampires. They are attracted to light and sound. Cut your engines if you are spotted. Otherwise they will kill you.
 
 The coordinates of your objective will be displayed on your compass. Good luck."
 
