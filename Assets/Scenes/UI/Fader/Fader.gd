@@ -2,11 +2,10 @@ extends Control
 
 onready var _black: TextureRect = $Background
 
-var _modulate_target: float = 0.0
+var _modulate_target: float = 1.0
 
 func _ready() -> void:
 	_black.modulate.a = 1.0
-	_unfade()
 	var _err_fade = Events.connect("fade", self, "_fade_to_black")
 	var _err_unfade = Events.connect("unfade", self, "_unfade")
 
