@@ -8,6 +8,16 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody",
+"class": "PlayerBoat",
+"language": "GDScript",
+"path": "res://Assets/Scenes/Player/Player.gd"
+} ]
+_global_script_class_icons={
+"PlayerBoat": ""
+}
+
 [application]
 
 config/name="Sea Of Vampires"

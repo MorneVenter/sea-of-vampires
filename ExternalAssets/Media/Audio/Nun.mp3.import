@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Nun.mp3-a30908061349f2f072ebbaf4cdb9934b.mp3str"
+
+[deps]
+
+source_file="res://ExternalAssets/Media/Audio/Nun.mp3"
+dest_files=[ "res://.import/Nun.mp3-a30908061349f2f072ebbaf4cdb9934b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

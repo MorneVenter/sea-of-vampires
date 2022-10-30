@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Assets/Scenes/Vampire/Vampire.gd" type="Script" id=1]
 
@@ -41,7 +41,7 @@ void fragment() {
 	
 	
 	ALBEDO = wing.rgb * gradient.rgb * alter_mask.rgb;
-	ALPHA = 0.43;
+	ALPHA = 0.63;
 	EMISSION = emission * pattern.rgb * alter_mask.rgb;
 }"
 
@@ -54,9 +54,28 @@ shader_param/emission_strengh = 0.0
 
 [sub_resource type="SphereMesh" id=1]
 
+[sub_resource type="SphereShape" id=4]
+radius = 6.438
+
+[sub_resource type="SphereShape" id=5]
+radius = 0.345784
+
 [node name="Vampire" type="MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0, 0.25, 0 )
 material_override = SubResource( 3 )
 cast_shadow = 0
 mesh = SubResource( 1 )
 script = ExtResource( 1 )
+
+[node name="DetectionArea" type="Area" parent="."]
+
+[node name="Collider" type="CollisionShape" parent="DetectionArea"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.58558, 0 )
+shape = SubResource( 4 )
+
+[node name="KillArea" type="Area" parent="."]
+
+[node name="Colider" type="CollisionShape" parent="KillArea"]
+shape = SubResource( 5 )
+
+[connection signal="body_entered" from="KillArea" to="." method="_on_KillArea_body_entered"]

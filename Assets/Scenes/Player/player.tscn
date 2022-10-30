@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://ExternalAssets/Models/Boat/boat.glb" type="PackedScene" id=1]
-[ext_resource path="res://Assets/Scenes/Player/player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Scenes/Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://ExternalAssets/Media/Audio/engine_sound.mp3" type="AudioStream" id=3]
+[ext_resource path="res://ExternalAssets/Media/Audio/Watch Out.mp3" type="AudioStream" id=4]
+[ext_resource path="res://ExternalAssets/Media/Audio/256687__jagadamba__wood-colliding-simulated-tall-ship-crashing-v3.wav" type="AudioStream" id=5]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.227451, 0.113725, 0.0784314, 1 )
@@ -10,8 +12,8 @@ albedo_color = Color( 0.227451, 0.113725, 0.0784314, 1 )
 [sub_resource type="CubeMesh" id=2]
 
 [sub_resource type="CapsuleShape" id=1]
-radius = 0.766148
-height = 2.32499
+radius = 0.631533
+height = 1.77765
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -26,6 +28,63 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector3( -5.967, -180, -9.04264e-07 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("BoatMesh:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.182957, 0.704567 ) ]
+}
+
+[sub_resource type="Animation" id=8]
+resource_name = "die"
+length = 12.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("BoatMesh:translation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 2.8, 2.9, 3, 3.5, 3.6, 3.7, 4.4, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.182957, 0.704567 ), Vector3( 0, -0.182957, 0.704567 ), Vector3( 0, -0.412171, 0.704567 ), Vector3( 0, -0.263007, 0.704567 ), Vector3( 0, -0.263007, 0.704567 ), Vector3( 0, -0.6, 0.705 ), Vector3( 0, -0.263007, 0.704567 ), Vector3( 0, -0.263007, 0.704567 ), Vector3( 0, -1.83741, 0.704567 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("DeathSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3.4, 11.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 5.6, 12 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_fade_out"
+}, {
+"args": [  ],
+"method": "_reload"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -45,20 +104,77 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Vector3( 0, -180, 0 ), Vector3( -5.967, -180, -9.04264e-07 ), Vector3( 0, -180, 0 ), Vector3( 5.566, -180, 8.43096e-07 ), Vector3( 0, -180, 0 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("BoatMesh:translation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector3( 0, -0.182957, 0.704567 ) ]
+}
 
-[node name="Player" type="KinematicBody"]
+[sub_resource type="Animation" id=6]
+resource_name = "play"
+length = 0.7
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("PersueSound:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.01, 0.7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ -40.0, 0.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("PersueSound:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "stop"
+length = 1.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("PersueSound:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -40.0 ]
+}
+
+[node name="Player" type="KinematicBody" groups=["Player"]]
 script = ExtResource( 2 )
 
 [node name="BoatMesh" parent="." instance=ExtResource( 1 )]
-transform = Transform( -0.5, -4.27551e-11, -7.50888e-08, -7.84843e-09, 0.497291, 0.0519778, 7.46776e-08, 0.0519778, -0.497291, 0, 0, 0.704567 )
+transform = Transform( -0.5, -1.24352e-08, 4.34746e-08, -7.84844e-09, 0.497291, 0.0519778, -4.45317e-08, 0.0519778, -0.497291, 0, -0.182957, 0.704567 )
 
 [node name="BoatLight" type="OmniLight" parent="BoatMesh"]
 transform = Transform( 2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 3.26321, 2.06702 )
 light_color = Color( 0.65098, 0.713726, 1, 1 )
 light_specular = 5.0
 shadow_enabled = true
-omni_range = 12.0
-omni_attenuation = 0.287175
+omni_range = 11.0
 
 [node name="Cargo" type="MeshInstance" parent="BoatMesh"]
 transform = Transform( 0.9, 4.93217e-09, 1.54742e-10, -4.93217e-09, 0.89823, 0.0564174, 1.54742e-10, -0.0564174, 0.89823, 1.57262e-07, 1.663, -1.79887 )
@@ -78,4 +194,19 @@ bus = "Engine"
 [node name="BoatAnimator" type="AnimationPlayer" parent="."]
 autoplay = "flaot"
 anims/RESET = SubResource( 5 )
+anims/die = SubResource( 8 )
 anims/flaot = SubResource( 4 )
+
+[node name="PersueSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -40.0
+pitch_scale = 0.9
+bus = "PersueSound"
+
+[node name="PersueSoundAnimator" type="AnimationPlayer" parent="."]
+anims/play = SubResource( 6 )
+anims/stop = SubResource( 7 )
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+pitch_scale = 0.8

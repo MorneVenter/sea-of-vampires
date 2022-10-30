@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Watch Out.mp3-b3dd5e1e09829dbecfdb8ed0a0ce29e5.mp3str"
+
+[deps]
+
+source_file="res://ExternalAssets/Media/Audio/Watch Out.mp3"
+dest_files=[ "res://.import/Watch Out.mp3-b3dd5e1e09829dbecfdb8ed0a0ce29e5.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

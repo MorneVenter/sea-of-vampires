@@ -1,7 +1,11 @@
 extends KinematicBody
 
+class_name PlayerBoat
+
 onready var _boat_light: OmniLight = $BoatMesh/BoatLight
 onready var _engine_sound: AudioStreamPlayer3D = $EngineSound
+onready var _persue_sound_anim: AnimationPlayer = $PersueSoundAnimator
+onready var _boat_anim: AnimationPlayer = $BoatAnimator
 
 export var max_speed: float = 2.6
 export var momentum: float = 0.03
@@ -12,6 +16,9 @@ var speed: float = 0.0
 var move_direction: Vector3 = Vector3.ZERO
 var dead_zone: float = 2.0
 var light_energy: float = 1.0
+var is_moving: bool = false
+var is_dead: bool = false
+var pursuers: Array = []
 
 func _ready() -> void:
 	_boat_light.light_energy = 0.0
@@ -21,7 +28,7 @@ func _physics_process(_delta: float) -> void:
 	_handle_movement()
 
 func _handle_movement() -> void:
-	if Input.is_action_pressed("left_click"):
+	if Input.is_action_pressed("left_click") and not is_dead:
 		var position_of_mouse: Vector3 = _get_mouse_position()
 		if transform.origin.distance_to(position_of_mouse) <= dead_zone:
 			_reduce_speed()
@@ -38,9 +45,11 @@ func _handle_movement() -> void:
 
 func _reduce_speed() -> void:
 	speed = clamp(speed - momentum, 0, max_speed)
+	is_moving = true if speed / max_speed > 0.5 else false
 
 func _increase_speed() -> void:
 	speed = clamp(speed + momentum, 0, max_speed)
+	is_moving = true if speed / max_speed > 0.5 else false
 
 func _move(position_of_mouse: Vector3) -> void:
 	var target_vector: Vector3 = (transform.origin - position_of_mouse)
@@ -59,3 +68,32 @@ func _get_mouse_position() -> Vector3:
 	if ray_list.has("position") and ray_list["collider"].is_in_group("Sea"):
 		return ray_list["position"]
 	return Vector3.ZERO
+
+func kill() -> void:
+	is_dead = true
+	_boat_anim.current_animation = "die"
+
+func add_pursuer(vampire: Spatial) -> void:
+	var index := pursuers.find(vampire)
+	if index == -1:
+		pursuers.append(vampire)
+		_play_persue()
+
+func remove_pursuer(vampire: Spatial) -> void:
+	var index := pursuers.find(vampire)
+	pursuers.remove(index)
+	if pursuers.size() <= 0:
+		_stop_persue()
+
+func _play_persue() -> void:
+	if _persue_sound_anim.current_animation != "play":
+		_persue_sound_anim.current_animation = "play"
+
+func _stop_persue() -> void:
+	_persue_sound_anim.current_animation = "stop"
+
+func _fade_out() -> void:
+	Events.emit_signal("fade")
+
+func _reload() -> void:
+	Events.emit_signal("reload")

@@ -1,3 +1,5 @@
 extends Node
 
-# All global signals are registered here
+signal fade()
+signal unfade()
+signal reload()

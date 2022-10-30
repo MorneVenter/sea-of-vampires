@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="EndGoal" type="Spatial"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 68.4823, 0, -72.1305 )
