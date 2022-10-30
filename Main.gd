@@ -6,6 +6,7 @@ var blood_sea = preload("res://Assets/Scenes/Levels/BloodSea/BloodSea.tscn")
 
 func _ready() -> void:
 	var _err = Events.connect("reload", self, "_reload")
+	OS.set_window_maximized(true)
 
 func _reload() -> void:
 	for child in world.get_children():

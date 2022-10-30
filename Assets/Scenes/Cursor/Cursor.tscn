@@ -6,11 +6,13 @@
 [node name="Cursor" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 1
 script = ExtResource( 2 )
 
 [node name="Mouse" type="Control" parent="."]
 margin_right = 20.0
 margin_bottom = 20.0
+mouse_filter = 1
 
 [node name="CursorImage" type="TextureRect" parent="Mouse"]
 modulate = Color( 0.462745, 0.537255, 0.72549, 1 )
